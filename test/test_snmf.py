@@ -1,9 +1,8 @@
-from pymf.snmf import *
+from pymf.snmf import SNMF
 import numpy as np
-from numpy.testing import *
-from base import *
+from numpy.testing import assert_almost_equal
 
-class TestNMF():
+class TestNMF:
 
     data = np.array([[1.0, 0.0, 0.2], 
                      [0.0, -1.0, 0.3]])

@@ -10,7 +10,7 @@ Matrix Decomposition for Large Sparse Graphs, in Proc. SIAM Int. Conf. on Data
 Mining. 
 """
 import numpy as np
-from cur import CUR
+from pymf.cur import CUR
 
 __all__ = ["CMD"]
 

@@ -1,7 +1,6 @@
-from pymf.cnmf import *
 import numpy as np
-from numpy.testing import *
-from base import *
+from pymf.cnmf import CNMF
+from base import assert_set_equal
 
 class TestCNMF():
 

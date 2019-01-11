@@ -1,9 +1,8 @@
 from pymf.sivm_cur import SIVM_CUR
 import numpy as np
-from numpy.testing import *
-from base import *
 
-class TestCUR():
+
+class TestCUR:
 
     data = np.array([[0.25, 0.1, 0.0, 0.0], 
                      [1.0, 0.4, 0.7, 0.0],

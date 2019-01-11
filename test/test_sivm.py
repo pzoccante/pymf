@@ -1,9 +1,9 @@
 import numpy as np
-from numpy.testing import *
 from pymf.sivm import SIVM
-from base import *
+from base import assert_set_equal
 
-class TestSIVM():
+
+class TestSIVM:
 
     data = np.array([[1.0, 0.0, 0.0, 0.5], 
                      [0.0, 1.0, 0.0, 0.0]])

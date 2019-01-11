@@ -106,13 +106,13 @@ def pdist(A, B, metric='l2' ):
     # Returns a distance matrix d (n x m).
     d = np.zeros((A.shape[1], B.shape[1]))
     if A.shape[1] <= B.shape[1]:
-        for aidx in xrange(A.shape[1]):
+        for aidx in range(A.shape[1]):
             if metric == 'l2':
                 d[aidx:aidx+1,:] = l2_distance(B[:,:], A[:,aidx:aidx+1]).reshape((1,-1))
             if metric == 'l1':
                 d[aidx:aidx+1,:] = l1_distance(B[:,:], A[:,aidx:aidx+1]).reshape((1,-1))
     else:
-        for bidx in xrange(B.shape[1]):
+        for bidx in range(B.shape[1]):
             if metric == 'l2':
                 d[:, bidx:bidx+1] = l2_distance(A[:,:], B[:,bidx:bidx+1]).reshape((-1,1))
             if metric == 'l1':

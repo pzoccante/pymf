@@ -8,8 +8,8 @@ Plenum Press, New York 1981.
 """
 import numpy as np
 
-import dist
-from base import PyMFBase
+from pymf.dist import pdist
+from pymf.base import PyMFBase
 
 __all__ = ["Cmeans"]
 
@@ -65,7 +65,7 @@ class Cmeans(PyMFBase):
     def _update_h(self):                    
         # assign samples to best matching centres ...
         m = 1.75
-        tmp_dist = dist.pdist(self.W, self.data, metric='l2') + self._EPS
+        tmp_dist = pdist(self.W, self.data, metric='l2') + self._EPS
         self.H[:,:] = 0.0
         
         for i in range(self._num_bases):

@@ -10,8 +10,8 @@ IEEE Trans. on Pattern Analysis and Machine Intelligence 32(1), 45-55.
 """
 import numpy as np
 import logging
-from kmeans import Kmeans
-from base import PyMFBase
+from pymf.kmeans import Kmeans
+from pymf.base import PyMFBase
 
 __all__ = ["CNMF"]
 
@@ -143,7 +143,7 @@ class CNMF(PyMFBase):
         self.ferr = np.zeros(niter)
         # iterate over W and H
         
-        for i in xrange(niter):
+        for i in range(niter):
             # update H
             XtX_neg_x_W = np.dot(XtX_neg, self.G)
             XtX_pos_x_W = np.dot(XtX_pos, self.G)

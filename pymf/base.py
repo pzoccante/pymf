@@ -248,13 +248,13 @@ class PyMFBase():
         if compute_err:
             self.ferr = np.zeros(niter)
              
-        for i in xrange(niter):
+        for i in range(niter):
             if compute_w:
                 self._update_w()
 
             if compute_h:
-                self._update_h()                                        
-         
+                self._update_h()
+
             if compute_err:                 
                 self.ferr[i] = self.frobenius_norm()                
                 self._logger.info('FN: %s (%s/%s)'  %(self.ferr[i], i+1, niter))

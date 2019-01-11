@@ -1,8 +1,9 @@
 from pymf.svd import SVD
 import numpy as np
-from numpy.testing import *
+from numpy.testing import assert_almost_equal
 
-class TestSVD():
+
+class TestSVD:
 
     data = np.array([[1.0, 0.2, 1.0], 
                      [0.3, 1.0, 1.0],
@@ -27,9 +28,9 @@ class TestSVD():
 
         np_svdres = np.linalg.svd(self.data)
 
-        print mdl.U
-        print mdl.S
-        print mdl.V
+        print(mdl.U)
+        print(mdl.S)
+        print(mdl.V)
 
         # eigenvectors can be inverted, thus, take the absolute values
         assert_almost_equal(np.abs(self.U), np.abs(mdl.U), decimal=2)

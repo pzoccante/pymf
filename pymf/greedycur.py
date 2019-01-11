@@ -11,8 +11,8 @@ Computing a Compressed Approixmate Matrix Decomposition', SIAM J. Computing 36(1
 Reconstruction via Greedy Approximation of SVD. ISAAC'2008.
 """
 import numpy as np
-from greedy import GREEDY
-from cur import CUR
+from pymf.greedy import GREEDY
+from pymf.cur import CUR
 
 __all__ = ["GREEDYCUR"]
 
@@ -66,7 +66,7 @@ class GREEDYCUR(CUR):
         """
         # set k to a value lower than the number of bases, usually
         # gives better results.
-        k = np.round(c - c/5.0)
+        k = np.rint(c - c/5.0).astype(np.int64)
         greedy_mdl = GREEDY(A, k=k, num_bases=c)
         greedy_mdl.factorize(compute_h=False, compute_err=False, niter=1)        
         return greedy_mdl.select

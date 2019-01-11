@@ -1,8 +1,9 @@
 from pymf.pca import PCA
 import numpy as np
-from numpy.testing import *
+from numpy.testing import assert_almost_equal
 
-class TestPCA():
+
+class TestPCA:
 
     data = np.array([[1.0, 0.2, 1.0, 0.4], 
                      [0.3, 1.0, 1.0, 0.5],

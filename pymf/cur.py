@@ -11,8 +11,8 @@ a Compressed Approixmate Matrix Decomposition', SIAM J. Computing 36(1), 184-206
 import numpy as np
 import scipy.sparse
 
-from svd import pinv
-from base import PyMFBase3
+from pymf.svd import pinv
+from pymf.base import PyMFBase3
 
 
 __all__ = ["CUR"]

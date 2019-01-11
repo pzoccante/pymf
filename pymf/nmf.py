@@ -14,8 +14,7 @@ import logging.config
 import scipy.sparse
 import scipy.optimize
 from cvxopt import solvers, base
-from base import PyMFBase
-from svd import pinv
+from pymf.base import PyMFBase
 
 __all__ = ["NMF", "RNMF", "NMFALS", "NMFNNLS"]
 
@@ -66,14 +65,14 @@ class NMF(PyMFBase):
        
     def _update_h(self):
         # pre init H1, and H2 (necessary for storing matrices on disk)
-        H2 = np.dot(np.dot(self.W.T, self.W), self.H) + 10**-9
-        self.H *= np.dot(self.W.T, self.data[:,:])
+        H2 = ((self.W.T @ self.W) @ self.H) + 10**-9
+        self.H *= self.W.T @ self.data
         self.H /= H2
 
     def _update_w(self):
         # pre init W1, and W2 (necessary for storing matrices on disk)
-        W2 = np.dot(np.dot(self.W, self.H), self.H.T) + 10**-9
-        self.W *= np.dot(self.data[:,:], self.H.T)
+        W2 = ((self.W @ self.H) @ self.H.T) + 10**-9
+        self.W *= (self.data @ self.H.T)
         self.W /= W2
         self.W /= np.sqrt(np.sum(self.W**2.0, axis=0))
 
@@ -134,8 +133,7 @@ class RNMF(PyMFBase):
         return X
         
     def _init_h(self):
-        self.H = np.random.random((self._num_bases, self._num_samples))
-        self.H[:,:] = 1.0
+        self.H = np.ones((self._num_bases, self._num_samples), dtype=np.float64)
 
         # normalized bases
         Wnorm = np.sqrt(np.sum(self.W**2.0, axis=0))
@@ -146,7 +144,7 @@ class RNMF(PyMFBase):
             
         self._update_s()
         
-    def _update_s(self):                
+    def _update_s(self):
         self.S = self.data - np.dot(self.W, self.H)
         self.S = self.soft_thresholding(self.S, self._lamb)
     
@@ -228,7 +226,7 @@ class NMFALS(PyMFBase):
         INQa = base.matrix(-np.eye(self._num_bases))
         INQb = base.matrix(0.0, (self._num_bases,1))            
     
-        map(updatesingleH, xrange(self._num_samples))                        
+        list(map(updatesingleH, range(self._num_samples)))
             
                 
     def _update_w(self):
@@ -243,7 +241,7 @@ class NMFALS(PyMFBase):
         INQa = base.matrix(-np.eye(self._num_bases))
         INQb = base.matrix(0.0, (self._num_bases,1))            
 
-        map(updatesingleW, xrange(self._data_dimension))
+        list(map(updatesingleW, range(self._data_dimension)))
 
         self.W = self.W/np.sum(self.W, axis=1)
 
@@ -298,14 +296,14 @@ class NMFNNLS(PyMFBase):
         def updatesingleH(i):        
             self.H[:,i] = scipy.optimize.nnls(self.W, self.data[:,i])[0]
                                                                             
-        map(updatesingleH, xrange(self._num_samples))                        
+        list(map(updatesingleH, range(self._num_samples)))
             
                 
     def _update_w(self):
         def updatesingleW(i):            
             self.W[i,:] = scipy.optimize.nnls(self.H.T, self.data[i,:].T)[0]
 
-        map(updatesingleW, xrange(self._data_dimension))
+        list(map(updatesingleW, range(self._data_dimension)))
 
 
 def _test():

@@ -12,9 +12,9 @@ Factorization in the Wild. ICDM 2009.
 import numpy as np
 
 from itertools import combinations
-from dist import vq
-from pca import PCA
-from aa import AA
+from pymf.dist import vq
+from pymf.pca import PCA
+from pymf.aa import AA
 
 __all__ = ["CHNMF"]
 
@@ -171,7 +171,7 @@ class CHNMF(AA):
             pcamodel = PCA(self.data)        
             pcamodel.factorize(show_progress=False)        
             proj = pcamodel.H
-            print "PROJ", proj.shape
+            print("PROJ", proj.shape)
         else:            
             R = np.random.randn(self._base_sel, self._data_dimension)           
             proj = np.dot(R, self.data)

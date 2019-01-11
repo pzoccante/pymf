@@ -1,8 +1,9 @@
 from pymf.kmeans import Kmeans
 import numpy as np
-from numpy.testing import *
+from numpy.testing import assert_almost_equal
 
-class TestKMeans():
+
+class TestKMeans:
 
     data = np.array([[0.2, 0.1, 0.8, 0.9, 0.5], 
                      [0.2, 0.1, 0.8, 0.9, 0.5]])
@@ -13,7 +14,6 @@ class TestKMeans():
     H = np.array([[1.0, 1.0, 0.0, 0.0, 0.0], 
                   [0.0, 0.0, 1.0, 1.0, 0.0],
                   [0.0, 0.0, 0.0, 0.0, 1.0]])
-
 
     def test_compute_w(self):
         mdl = Kmeans(self.data, num_bases=3)

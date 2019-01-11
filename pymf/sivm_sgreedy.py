@@ -12,8 +12,8 @@ Conf. on Information and Knowledge Management. ACM. 2010.
 import numpy as np
 import time
 
-from dist import *
-from base import *
+from pymf.dist import l2_distance
+from pymf.base import cmdet
 from sivm_search import SIVM_SEARCH
 
 __all__ = ["SIVM_SGREEDY"]

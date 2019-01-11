@@ -1,9 +1,7 @@
-from pymf.cmde import CMD
 import numpy as np
-from numpy.testing import *
-from base import *
+from pymf.cmde import CMD
 
-class TestCMD():
+class TestCMD:
 
     data = np.array([[0.25, 0.1, 0.0, 0.0], 
                      [1.0, 0.4, 0.7, 0.0],

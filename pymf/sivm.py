@@ -12,10 +12,11 @@ Conf. on Information and Knowledge Management. ACM. 2010.
 import scipy.sparse
 import numpy as np
 
-from dist import *
-from aa import AA
+from pymf.dist import l1_distance, l2_distance, cosine_distance, abs_cosine_distance, kl_divergence, weighted_abs_cosine_distance
+from pymf.aa import AA
 
 __all__ = ["SIVM"]
+
 
 class SIVM(AA):
     """      

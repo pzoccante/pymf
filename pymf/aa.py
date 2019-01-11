@@ -11,8 +11,8 @@ PyMF Archetypal Analysis [1]
 import numpy as np
 from cvxopt import solvers, base
 
-from svd import pinv
-from base import PyMFBase
+from pymf.svd import pinv
+from pymf.base import PyMFBase
 __all__ = ["AA"]
 
 class AA(PyMFBase):
@@ -104,7 +104,7 @@ class AA(PyMFBase):
         INQb = base.matrix(0.0, (self._num_bases,1))
         EQa = base.matrix(1.0, (1, self._num_bases))
         
-        for i in xrange(self._num_samples):
+        for i in range(self._num_samples):
             update_single_h(i)        
 
     def _update_w(self):
@@ -126,7 +126,7 @@ class AA(PyMFBase):
         INQb = base.matrix(0.0, (self._num_samples, 1))
         EQa = base.matrix(1.0, (1, self._num_samples))
 
-        for i in xrange(self._num_bases):
+        for i in range(self._num_bases):
             update_single_w(i)            
 
         self.W = np.dot(self.beta, self.data.T).T
